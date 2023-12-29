@@ -28,6 +28,7 @@ class App extends Component {
       _title = this.state.contents[0].title;
       _desc = this.state.contents[0].desc;
     }
+    console.log('render', this);
 
     return (
     <div className="App">Hello React 💁🏻‍♀️
@@ -36,16 +37,16 @@ class App extends Component {
       sub={this.state.subject.sub} /> */}
       <header>
         <h1><a href="/" onClick={function(e){
-          console.log(e);
+          console.log('event in', this);
           e.preventDefault();
           // this.state.mode = 'welcome';
           this.setState({
             mode: 'welcome'
-          })
-        }.bind(this)}>{this.state.subject.title}</a></h1>
+          });
+        }}>{this.state.subject.title}</a></h1>
         {this.state.subject.sub}
       </header>
-      <Subject title="React" sub="For UI" />
+      {/* <Subject title="React" sub="For UI" /> */}
       <TOC data={this.state.contents}/>
       <Content title = {_title} desc = {_desc} />
     </div>
