@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TOC from "./components/TOC";
 import Content from "./components/Content";
 import Subject from "./components/Subject";
+import Control from "./components/Control";
 import "./App.css";
 
 class App extends Component {
@@ -21,7 +22,8 @@ class App extends Component {
   }
   render() {
     console.log("App render");
-    var _title, _desc = null;
+    var _title,
+      _desc = null;
     if (this.state.mode === "welcome") {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
@@ -53,12 +55,17 @@ class App extends Component {
         <TOC
           onChangePage={function (id) {
             this.setState({
-              mode:'read',
-              selected_content_id:Number(id),
+              mode: "read",
+              selected_content_id: Number(id),
             });
           }.bind(this)}
           data={this.state.contents}
         />
+        <Control onChangeMode = {function (_mode) {
+          this.setState({
+            mode: _mode
+          })
+        }.bind(this)} />
         <Content title={_title} desc={_desc} />
       </div>
     );
